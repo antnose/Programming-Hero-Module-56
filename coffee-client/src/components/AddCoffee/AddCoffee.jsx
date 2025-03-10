@@ -11,6 +11,19 @@ const AddCoffee = () => {
     const taste = form.taste.value;
     const details = form.details.value;
     const photo = form.photo.value;
+    const coffee = { name, supplier, category, chef, taste, details, photo };
+
+    fetch("", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(coffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
 
     console.log(name, supplier, category, chef, taste, details, photo);
   };
