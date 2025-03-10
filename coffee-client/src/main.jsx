@@ -9,6 +9,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader: () => fetch("http://localhost:3001/coffee"),
   },
   {
     path: "addCoffee",
