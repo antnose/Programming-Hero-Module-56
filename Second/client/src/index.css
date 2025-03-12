@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply a dark coffee theme */
+:root {
+  --primary: #6f4e37;
+  --secondary: #8b5e3c;
+  --accent: #a67b5b;
+  --neutral: #3e2723;
+  --base-100: #1e1e1e;
+  --info: #3abff8;
+  --success: #36d399;
+  --warning: #fbbd23;
+  --error: #f87272;
+}
+
+body {
+  background-image: url("/coffee-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: "Dancing Script", cursive;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

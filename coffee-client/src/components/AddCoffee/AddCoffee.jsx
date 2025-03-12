@@ -13,28 +13,39 @@ const AddCoffee = () => {
     const photo = form.photo.value;
     const coffee = { name, supplier, category, chef, taste, details, photo };
 
+    // fetch("http://localhost:3001/coffee", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(coffee),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data.insertedId) {
+    //       Swal.fire({
+    //         title: "Success!",
+    //         text: "Coffee Added Successfully",
+    //         icon: "success",
+    //         confirmButtonText: "Done",
+    //       });
+    //       form.reset();
+    //     }
+    //   });
+    // console.log(name, supplier, category, chef, taste, details, photo);
+
     fetch("http://localhost:3001/coffee", {
       method: "POST",
       headers: {
-        "content-type": "application/json",
+        "content-type": "application/.json",
       },
       body: JSON.stringify(coffee),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Success!",
-            text: "Coffee Added Successfully",
-            icon: "success",
-            confirmButtonText: "Done",
-          });
-          form.reset();
-        }
       });
-
-    console.log(name, supplier, category, chef, taste, details, photo);
   };
 
   return (
