@@ -1,6 +1,42 @@
-import React from "react";
+import Swal from "sweetalert2";
 
 const CoffeeForm = () => {
+  const handleAddCoffee = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.coffeeName.value;
+    const supplier = form.supplier.value;
+    const category = form.category.value;
+    const chef = form.chef.value;
+    const taste = form.taste.value;
+    const details = form.details.value;
+    const photo = form.photo.value;
+    // console.log(name, supplier, category, chef, taste, details);
+    const newCoffee = { name, supplier, category, chef, taste, details, photo };
+    // console.log(newCoffee);
+
+    fetch("http://localhost:3001/coffee", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success",
+            text: "Coffee added successfully",
+            icon: "success",
+            confirmButtonText: "Next to proceed",
+          });
+          form.reset();
+        }
+      });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/coffee-bg-dark.jpg')] bg-cover bg-center p-6">
       <div className="bg-base-100/90 backdrop-blur-sm p-8 rounded-xl shadow-2xl w-full max-w-2xl border border-coffee-700">
@@ -17,7 +53,7 @@ const CoffeeForm = () => {
           Add a New Coffee
         </h1>
 
-        <form className="space-y-6">
+        <form onSubmit={handleAddCoffee} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left Side */}
             <div className="space-y-4">
@@ -26,6 +62,7 @@ const CoffeeForm = () => {
                   1. Name
                 </label>
                 <input
+                  name="coffeeName"
                   type="text"
                   className="w-full px-4 py-2 bg-coffee-900/50 border border-coffee-700 rounded-lg text-coffee-100 focus:outline-none focus:ring-2 focus:ring-coffee-500 placeholder-coffee-400 transition-all duration-300 hover:border-coffee-500"
                   placeholder="Enter coffee name"
@@ -36,6 +73,7 @@ const CoffeeForm = () => {
                   2. Supplier
                 </label>
                 <input
+                  name="supplier"
                   type="text"
                   className="w-full px-4 py-2 bg-coffee-900/50 border border-coffee-700 rounded-lg text-coffee-100 focus:outline-none focus:ring-2 focus:ring-coffee-500 placeholder-coffee-400 transition-all duration-300 hover:border-coffee-500"
                   placeholder="Enter supplier name"
@@ -46,6 +84,7 @@ const CoffeeForm = () => {
                   3. Category
                 </label>
                 <input
+                  name="category"
                   type="text"
                   className="w-full px-4 py-2 bg-coffee-900/50 border border-coffee-700 rounded-lg text-coffee-100 focus:outline-none focus:ring-2 focus:ring-coffee-500 placeholder-coffee-400 transition-all duration-300 hover:border-coffee-500"
                   placeholder="Enter category"
@@ -60,6 +99,7 @@ const CoffeeForm = () => {
                   4. Chef
                 </label>
                 <input
+                  name="chef"
                   type="text"
                   className="w-full px-4 py-2 bg-coffee-900/50 border border-coffee-700 rounded-lg text-coffee-100 focus:outline-none focus:ring-2 focus:ring-coffee-500 placeholder-coffee-400 transition-all duration-300 hover:border-coffee-500"
                   placeholder="Enter chef's name"
@@ -70,6 +110,7 @@ const CoffeeForm = () => {
                   5. Taste
                 </label>
                 <input
+                  name="taste"
                   type="text"
                   className="w-full px-4 py-2 bg-coffee-900/50 border border-coffee-700 rounded-lg text-coffee-100 focus:outline-none focus:ring-2 focus:ring-coffee-500 placeholder-coffee-400 transition-all duration-300 hover:border-coffee-500"
                   placeholder="Enter taste description"
@@ -80,6 +121,7 @@ const CoffeeForm = () => {
                   6. Details
                 </label>
                 <input
+                  name="details"
                   type="text"
                   className="w-full px-4 py-2 bg-coffee-900/50 border border-coffee-700 rounded-lg text-coffee-100 focus:outline-none focus:ring-2 focus:ring-coffee-500 placeholder-coffee-400 transition-all duration-300 hover:border-coffee-500"
                   placeholder="Enter details"
@@ -94,6 +136,7 @@ const CoffeeForm = () => {
               Photo
             </label>
             <input
+              name="photo"
               type="text"
               className="w-full px-4 py-2 bg-coffee-900/50 border border-coffee-700 rounded-lg text-coffee-100 focus:outline-none focus:ring-2 focus:ring-coffee-500 placeholder-coffee-400 transition-all duration-300 hover:border-coffee-500"
               placeholder="Enter photo URL"
