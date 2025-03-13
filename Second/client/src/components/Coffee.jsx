@@ -140,7 +140,7 @@ const Coffee = ({ coffee }) => {
         </Link>
 
         <button
-          className="px-4 py-2 bg-coffee-400 text-coffee-900 font-semibold rounded-lg hover:bg-coffee-500 transition-all border duration-300"
+          className="px-4 py-2 bg-coffee-400 text-coffee-900 font-semibold rounded-lg hover:bg-coffee-500 transition-all bo rder duration-300"
           onClick={() => handleDelete(id)}
         >
           Delete
