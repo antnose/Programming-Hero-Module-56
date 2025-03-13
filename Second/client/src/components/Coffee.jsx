@@ -1,17 +1,8 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Coffee = ({ coffee }) => {
-  const {
-    name,
-    supplier,
-    category,
-    chef,
-    taste,
-    details,
-    photo,
-    _id: id,
-  } = coffee;
+const Coffee = ({ coffee, coffees, setCoffees }) => {
+  const { name, supplier, category, chef, taste, details, photo, _id } = coffee;
 
   const handleDelete = (id) => {
     console.log(id);
@@ -38,6 +29,8 @@ const Coffee = ({ coffee }) => {
                 text: "Your coffee has been deleted.",
                 icon: "success",
               });
+              const remaining = coffees.filter((cof) => cof._id !== _id);
+              setCoffees(remaining);
             }
           });
       }
@@ -133,15 +126,15 @@ const Coffee = ({ coffee }) => {
           </button>
         </Link>
 
-        <Link to={`/updateCoffee/${id}`}>
+        <Link to={`/updateCoffee/${_id}`}>
           <button className="px-4 py-2 bg-coffee-400 text-coffee-900 font-semibold rounded-lg hover:bg-coffee-500 transition-all border duration-300">
             Edit
           </button>
         </Link>
 
         <button
-          className="px-4 py-2 bg-coffee-400 text-coffee-900 font-semibold rounded-lg hover:bg-coffee-500 transition-all bo rder duration-300"
-          onClick={() => handleDelete(id)}
+          className="px-4 py-2 bg-coffee-400 text-coffee-900 font-semibold rounded-lg hover:bg-coffee-500 transition-all bo border duration-300"
+          onClick={() => handleDelete(_id)}
         >
           Delete
         </button>
@@ -151,3 +144,4 @@ const Coffee = ({ coffee }) => {
 };
 
 export default Coffee;
+// 3.54
